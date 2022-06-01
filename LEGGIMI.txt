@@ -1,0 +1,1 @@
+I training checkpoints e il file siamesemodel.h5 erano troppo grandi per il repository git, sono stato costretto a tagliarli
