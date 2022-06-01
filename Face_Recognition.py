@@ -325,31 +325,4 @@ train(train_data, EPOCHS)
 siamese_model.save('siamesemodel.h5')
 
 
-# Riprendo il modello
-model = tf.keras.models.load_model('siamesemodel.h5', 
-                                   custom_objects={'L1Dist':L1Dist, 'BinaryCrossentropy':tf.losses.BinaryCrossentropy})
-
-
-
-# Definisco la funzione di verifica
-def verify(model, detection_threshold, verification_threshold):
-    # Costruisco l'array di risultati
-    results = []
-    for image in os.listdir(os.path.join('application_data', 'verification_images')):
-        input_img = preprocess(os.path.join('application_data', 'input_image', 'input_image.jpg'))
-        validation_img = preprocess(os.path.join('application_data', 'verification_images', image))
-        
-        # Faccio le predizioni
-        result = model.predict(list(np.expand_dims([input_img, validation_img], axis=1)))
-        results.append(result)
-    
-    # Setto la soglia di una predizione positiva
-    detection = np.sum(np.array(results) > detection_threshold)
-    
-    # la Verification Threshold e' la proporzione di  predizioni positive / il totale dei dati positivi
-    verification = detection / len(os.listdir(os.path.join('application_data', 'verification_images'))) 
-    verified = verification > verification_threshold
-    
-    return results, verified
-
 
