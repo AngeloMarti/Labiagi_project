@@ -1,0 +1,1 @@
+il modello.h5 era troppo grande per git, quindi non e' presente all'interno del repository

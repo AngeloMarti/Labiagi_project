@@ -1,0 +1,1 @@
+i checkpoint di resnet sono troppo pesanti per git, quindi ho dovuto toglierli
